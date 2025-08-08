@@ -1,0 +1,30 @@
+# Phone-specific configurations using actual Cisco MPP parameter names
+#
+# YAML Anchors Usage:
+# - Create an anchor: &anchor_name "value"
+# - Reference an anchor: *anchor_name
+# - Example: Station_Name: &phone01_station "phone-01" creates an anchor
+#           Phone_Label: *phone01_station references that anchor
+# - This helps avoid duplication and ensures consistency
+phones:
+  phone-01:
+    mac: "00:11:22:33:44:55"
+    ip_address: "192.168.1.10"
+    # Cisco MPP Parameters
+    Host_Name: "office-phone-01"
+    Display_Name_1_: "Reception"
+    User_ID_1_: "1001"
+    Password_1_: "your_sip_password"  # Replace with actual password
+    Station_Name: "phone-01"
+    Station_Display_Name: "Reception (1001)"
+
+  phone-02:
+    mac: "00:11:22:33:44:66"
+    ip_address: "192.168.1.11"
+    # Cisco MPP Parameters
+    Host_Name: "office-phone-02"
+    Display_Name_1_: "Conference Room"
+    User_ID_1_: "1002"
+    Password_1_: "your_sip_password"  # Replace with actual password
+    Station_Name: "phone-02"
+    Station_Display_Name: "Conference Room (1002)"

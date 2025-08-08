@@ -1,0 +1,27 @@
+# Ignore log files
+logs/
+*.log
+
+# Ignore report files
+reports/
+
+# Ignore SSL certificates (regenerate as needed)
+ssl/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Docker volumes
+.docker/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db

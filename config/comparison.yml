@@ -1,0 +1,37 @@
+# Configuration Comparison Settings
+comparison:
+  # Parameters to completely exclude from comparison
+  # These are unreliable or not meaningful to compare
+  blacklist:
+    - mac                      # Not a Cisco parameter
+    - ip_address              # Not a Cisco parameter
+    - serial_number           # Not a Cisco parameter
+    - raw_xml                 # Raw data, not a parameter
+    - Admin_Password
+    - User_Password
+    - Proxy_Password
+    - VPN_Password
+    - Mute_Tone
+    - Unmute_Tone
+    - Set_Local_Date__mm_dd_yyyy_
+    - Set_Local_Time__HH_mm_
+    - Login_Password
+    - SIP_Password
+    - XMPP_Password
+    - XML_Password
+    - LDAP_Password
+    - Auth_Page_Password_1_
+    - Password_1_
+    - Login_Password_1_
+    - Auth_Page_Password_2_
+    - Password_2_
+    - Login_Password_2_
+    - Auth_Page_Password_3_
+    - Password_3_
+    - Login_Password_3_
+    - Auth_Page_Password_4_
+    - Password_4_
+    - Login_Password_4_
+    - ACS_Password
+    - Connection_Request_Password
+    - BACKUP_ACS_Password

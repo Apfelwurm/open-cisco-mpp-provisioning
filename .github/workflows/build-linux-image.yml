@@ -1,0 +1,54 @@
+name: linux/amd64
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+
+  repository_dispatch: # Allows action to be triggered via webhook
+
+  workflow_dispatch: # Allows action to be run manually from the Actions tab
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3.0.0
+      - name: Set Docker tag
+        id: set-tag
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            echo "tag=latest" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.ref }}" == "refs/heads/dev" ]]; then
+            echo "tag=beta" >> $GITHUB_OUTPUT
+          else
+            echo "tag=pr-${{ github.event.number }}" >> $GITHUB_OUTPUT
+          fi
+      - name: Login to Docker Hub
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: docker/login-action@v3.2.0
+        with:
+          username: apfelwurm
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and Push to Docker Hub
+        uses: docker/build-push-action@v5.3.0
+        with:
+          context: .
+          file: ./linux.Dockerfile
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: |
+            apfelwurm/${{ github.event.repository.name }}:${{ steps.set-tag.outputs.tag }}
+          build-args: |
+            BUILDNODE=GitHub (Run Number: ${{ github.run_number }} Run ID: ${{ github.run_id }})
+            SOURCE_COMMIT=${{ github.sha }}
+          no-cache: true

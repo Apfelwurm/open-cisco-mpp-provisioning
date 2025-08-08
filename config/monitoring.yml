@@ -1,0 +1,27 @@
+# Service Configuration - Authentication and Monitoring Settings
+monitoring:
+  # Prometheus metrics configuration
+  metrics_enabled: true
+  metrics_endpoint: "/metrics"
+  
+  # Time windows for metrics (in seconds)
+  phone_activity_window: 3600  # 1 hour - for phone activity metrics
+  report_activity_window: 1800  # 30 minutes - for report activity metrics
+
+# Basic Authentication for Web Interface
+auth:
+  # Enable/disable authentication for web endpoints
+  enabled: true
+  
+  # Users with access to web interface
+  users:
+    admin:
+      username: "admin"
+      password: "change_this_password_123"  # Change this!
+      role: "admin"
+      description: "Full administrative access"
+    monitor:
+      username: "monitor"
+      password: "monitor_password_456"     # Change this!
+      role: "monitor"
+      description: "Read-only monitoring access (status and metrics only)"

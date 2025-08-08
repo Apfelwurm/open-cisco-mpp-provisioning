@@ -1,0 +1,47 @@
+# Monitoring and Authentication Configuration
+monitoring:
+  # Prometheus metrics configuration
+  metrics_enabled: true
+  metrics_endpoint: "/metrics"
+  
+  # Time windows for metrics (in seconds)
+  phone_activity_window: 3600  # 1 hour - for phone activity metrics
+  report_activity_window: 1800  # 30 minutes - for report activity metrics
+
+# Discovery Mode Configuration
+discovery:
+  # Enable discovery mode to collect default configurations from factory-reset phones
+  # When enabled:
+  #   - Configuration endpoints return 404 (no custom config served)
+  #   - Firmware updates are disabled
+  #   - Reporting endpoints remain active
+  #   - IP authorization is bypassed for configuration requests
+  # Use this to capture default configurations from newly reset phones
+  enabled: false
+  
+  # Optional: Allow specific phone MACs even in discovery mode
+  # These phones will still receive configuration and firmware updates
+  exclude_macs: []
+    # - "c4c603731f67"  # Example: phone that should still get config
+
+# IP Whitelisting Configuration
+ip_whitelist:
+  - "172.23.0.1"      # Example: specific IP for debugging PC
+
+# Basic Authentication for Web Interface
+auth:
+  # Enable/disable authentication for web endpoints
+  enabled: true
+  
+  # Users with access to web interface
+  users:
+    admin:
+      username: "admin"
+      password: "admin123"  # Change this!
+      role: "admin"
+      description: "Administrator access - full access to all endpoints"
+    monitor:
+      username: "monitor"
+      password: "monitor_password_456"     # Change this!
+      role: "monitor"
+      description: "Read-only monitoring access - only status and metrics endpoints"

@@ -1,0 +1,37 @@
+# Firmware Update Configuration for Cisco MPP Phones
+firmware:
+  # Enable/disable firmware update functionality
+  update_enabled: true
+
+  # Expected firmware version for all phones
+  # Format: major.minor.patch (e.g., "12.0.1")
+  expected_version: "12.0.1"
+
+  # Firmware download URL (TFTP or HTTP)
+  # Use $MAC placeholder for phone-specific firmware files if needed
+  # Examples:
+  #   tftp://172.16.0.21/firmware/sip68xx.12-0-1MPP0001-245.loads
+  #   http://172.16.0.21/firmware/sip68xx.12-0-1MPP0001-245.loads
+  upgrade_url: "tftp://tftpserver.local/sip68xx.12-0-1MPP0001-245.loads"
+
+  # Retry delay in seconds when upgrade fails
+  # Default: 3600 seconds (1 hour)
+  retry_delay: 3600
+
+  # Firmware update log messages
+  # Available placeholders: $PN, $MAC, $SCHEME, $SERVIP, $PORT, $PATH, $ERR
+  log_messages:
+    upgrade_request: "$PN $MAC -- Requesting upgrade $SCHEME://$SERVIP:$PORT$PATH"
+    upgrade_success: "$PN $MAC -- Successful upgrade $SCHEME://$SERVIP:$PORT$PATH -- $ERR"
+    upgrade_failure: "$PN $MAC -- Upgrade failed: $ERR"
+
+  # Optional: Phone model specific firmware versions and URLs
+  # If specified, these override the global expected_version and upgrade_url for specific models
+  model_specific:
+    enabled: false
+    versions:
+      # "CP-6841-3PCC": "12.0.1"
+      # "CP-8841-3PCC": "12.0.2"
+    urls:
+      # "CP-6841-3PCC": "tftp://tftpserver.local/sip6841.12-0-1MPP0001-245.loads"
+      # "CP-8841-3PCC": "tftp://tftpserver.local/sip8841.12-0-2MPP0001-250.loads"
