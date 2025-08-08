@@ -7,12 +7,12 @@ ENV BUILDNODE=$BUILDNODE
 ARG SOURCE_COMMIT=unspecified
 ENV SOURCE_COMMIT=$SOURCE_COMMIT
 
-LABEL com.apfelwurm.build-node=$BUILDNODE `
-      org.label-schema.schema-version="1.0" `
-      org.label-schema.url="https://volzit.de" `
-      org.label-schema.vcs-ref=$SOURCE_COMMIT `
-      org.label-schema.vendor="volzit" `
-      org.label-schema.description="Docker-based HTTP service that provides dynamic XML configuration provisioning for Cisco Multiplatform Phones (MPP)" `
+LABEL com.apfelwurm.build-node=$BUILDNODE \
+      org.label-schema.schema-version="1.0" \
+      org.label-schema.url="https://volzit.de" \
+      org.label-schema.vcs-ref=$SOURCE_COMMIT \
+      org.label-schema.vendor="volzit" \
+      org.label-schema.description="Docker-based HTTP service that provides dynamic XML configuration provisioning for Cisco Multiplatform Phones (MPP)" \
       org.label-schema.vcs-url="https://github.com/Apfelwurm/open-cisco-mpp-provisioning"
 
 # Install system dependencies
